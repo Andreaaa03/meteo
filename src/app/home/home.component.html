@@ -1,0 +1,24 @@
+<div class="container">
+    <h1 class="text-center">METEO</h1>
+    <div class="row">
+        <div class="col col-12 d-flex w-100">
+            <form action="" class="w-100">
+                <div class="w-50 mb-2">
+                    Lat: <input class="" type="text" [(ngModel)]="latitudine" name="latitudine">
+                </div>
+                <div class="w-50 mb-2">
+                    Long: <input class="" type="text" [(ngModel)]="longitudine" name="longitudine" >
+                </div>
+                <button [routerLink]="['/detail', latitudine, longitudine]"  >CERCA</button>
+                <button (click)="reset()">RESET</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            <h2>Suggeriti</h2>
+        </div>
+    </div>
+</div>

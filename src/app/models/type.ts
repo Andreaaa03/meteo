@@ -29,6 +29,7 @@ export type tempo = {
             wind10m: { direction: string; speed: number };
             temp2m: number;
             prec_type: string;
+            img: string;
         }
     ];
 };

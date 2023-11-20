@@ -19,6 +19,24 @@
     <div class="row">
         <div class="col col-12">
             <h2>Suggeriti</h2>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <button class="nav-link" (click)="functionSelectCity('Torino')" >Torino</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" (click)="functionSelectCity('New York')" >New York</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" (click)="functionSelectCity('Berlino')" >Berlino</button>
+                </li>
+            </ul>
+            <div class="row">
+                <div class="col col-12">
+                    <h3>{{citiesSelected}}</h3>
+                    <p *ngIf="citta?.results">{{citta.results.sunrise}}</p>
+                    <p *ngIf="citta?.results">{{citta.results.sunset}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

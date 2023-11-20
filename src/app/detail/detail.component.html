@@ -1,1 +1,22 @@
-<p>detail works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            <button [routerLink]="'/home'">Home</button>
+        </div>
+        <div class="col col-12">
+            <p *ngIf="citta?.results">{{citta.results.sunrise}}</p>
+            <p *ngIf="citta?.results">{{citta.results.sunset}}</p>
+            <div class="row" *ngFor="let single of tempo.dataseries">
+                <div class="col col-4">
+                    {{single.timepoint}}
+                </div>
+                <div class="col col-4">
+                    {{single.temp2m}}
+                </div>
+                <div class="col col-4">
+                    <img [src]="single.img" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

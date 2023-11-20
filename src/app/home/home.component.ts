@@ -16,37 +16,41 @@ export class HomeComponent implements OnInit {
 
   cities= {
     torino: {
-      name: 'torino',
+      name: 'Torino',
       lat: "45.06876340951821",
       long: "7.667354252651081",
     },
     newYork: {
-      name: 'newYork',
+      name: 'New York',
       lat: "40.72391581131591",
       long: "-74.03501662450388",
     },
     berlino:{
-      name: 'berlino',
+      name: 'Berlino',
       lat: "52.5172513804559",
       long: "13.397216732488998",
     }
   }
-  citiesSelected: string="";
-  functionSelectCity(){
+  citiesSelected: string="Torino";
+  functionSelectCity(city:string){
+    this.citiesSelected=city;
     switch (this.citiesSelected){
       case this.cities.torino.name :{
+        this.citiesSelected=this.cities.torino.name;
         this.latitudine=this.cities.torino.lat;
         this.longitudine=this.cities.torino.long;
         this.functionGgetSearchSunsetSunriseByLatLong();
         break;
       }
       case this.cities.newYork.name :{
+        this.citiesSelected=this.cities.newYork.name;
         this.latitudine = this.cities.newYork.lat;
         this.longitudine = this.cities.newYork.long;
         this.functionGgetSearchSunsetSunriseByLatLong();
         break;
       }
       case this.cities.berlino.name :{
+        this.citiesSelected=this.cities.berlino.name;
         this.latitudine = this.cities.berlino.lat;
         this.longitudine = this.cities.berlino.long;
         this.functionGgetSearchSunsetSunriseByLatLong();

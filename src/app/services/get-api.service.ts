@@ -21,6 +21,15 @@ export class GetApiService {
   getSearchTempoByLatLong(lat:string, long:string){
     return this.apiService.searchTempoByLatLong(lat, long).pipe(
       map((res:any)=>{
+        res.dataseries.forEach((e:any) => {
+          if(e.cloudcover<=2){
+            e.img ="https://www.7timer.info/img/misc/about_two_clear.png";
+          }else if(e.cloudcover>=3 && e.cloudcover<=7){
+            e.img ="https://www.7timer.info/img/misc/about_two_pcloudy.png";
+          }else if(e.cloudcover>=8){
+            e.img ="https://www.7timer.info/img/misc/about_two_cloudy.png";
+          }
+        });
         return res as tempo;
       })
     )

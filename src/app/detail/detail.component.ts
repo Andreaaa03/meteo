@@ -8,20 +8,20 @@ import { sunsetSunrise, tempo } from '../models/type';
   templateUrl: './detail.component.html',
 })
 export class DetailComponent implements OnInit {
-  constructor(private activatedRoute: ActivatedRoute){}
-  citta!:sunsetSunrise;
-  tempo!:tempo;
-  latitudine:string ="";
-  longitudine:string ="";
-  ngOnInit():void{
+  constructor(private activatedRoute: ActivatedRoute) { }
+  citta!: sunsetSunrise;
+  tempo!: tempo;
+  latitudine: string = "";
+  longitudine: string = "";
+  ngOnInit(): void {
     this.activatedRoute.data.subscribe(
-      (({sunsetSunrise, latLong, tempo})=>{
+      (({ sunsetSunrise, latLong, tempo }) => {
         this.citta = sunsetSunrise;
-        this.latitudine=latLong.lat;
-        this.longitudine=latLong.long;
-        this.tempo=tempo;
-        console.log(this.tempo);
+        this.latitudine = latLong.lat;
+        this.longitudine = latLong.long;
+        this.tempo = tempo;
       })
     )
   }
 }
+

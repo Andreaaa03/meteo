@@ -27,7 +27,10 @@ export class GetApiService {
           }else if(e.cloudcover>=3 && e.cloudcover<=7){
             e.img ="https://www.7timer.info/img/misc/about_two_pcloudy.png";
           }else if(e.cloudcover>=8){
-            e.img ="https://www.7timer.info/img/misc/about_two_cloudy.png";
+            if(e.lifted_index<=-5){
+              e.img ="https://www.7timer.info/img/misc/about_two_ts.png";
+            }else
+              e.img ="https://www.7timer.info/img/misc/about_two_cloudy.png";
           }
         });
         return res as tempo;

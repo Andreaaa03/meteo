@@ -8,11 +8,12 @@ import { sunsetSunrise, tempo } from '../models/type';
   templateUrl: './detail.component.html',
 })
 export class DetailComponent implements OnInit {
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private getApiService: GetApiService) { }
   citta!: sunsetSunrise;
   tempo!: tempo;
   latitudine: string = "";
   longitudine: string = "";
+  nameCity: string="";
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(
       (({ sunsetSunrise, latLong, tempo }) => {
@@ -20,7 +21,16 @@ export class DetailComponent implements OnInit {
         this.latitudine = latLong.lat;
         this.longitudine = latLong.long;
         this.tempo = tempo;
+        this.functionGetSearchCityByLatLong(this.latitudine, this.longitudine);
       })
+    )
+  }
+
+  functionGetSearchCityByLatLong(lat:string, long:string){
+    this.getApiService.getSearchCityByLatLong(lat, long).subscribe(
+      (res)=>{
+        this.nameCity=res;
+      }
     )
   }
 }

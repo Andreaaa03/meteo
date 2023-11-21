@@ -1,34 +1,50 @@
-<div class="container">
-    <h1 class="text-center">METEO</h1>
-    <div class="row">
-        <div class="col col-12 d-flex w-100">
-            <form action="" class="w-100">
-                <div class="w-50 mb-2">
-                    Lat: <input class="" type="text" [(ngModel)]="latitudine" name="latitudine">
+<div class="container vh-50">
+    <h1 class="text-center mt-5 mb-4">METEO</h1>
+    <div class="row justify-content-center">
+        <div class="col col-md-6 col-11 d-flex justify-content-center flex-wrap border border-2 rounded rounded-4 p-4">
+            <form action="" class="w-100 d-flex justify-content-center flex-wrap ">
+                <div class="w-100 mb-2 d-flex justify-content-center">
+                    <label class="px-2" for="">Latitudine</label>
+                    <input class="w-75" type="text" [(ngModel)]="latitudine" name="latitudine" placeholder="latitudine">
                 </div>
-                <div class="w-50 mb-2">
-                    Long: <input class="" type="text" [(ngModel)]="longitudine" name="longitudine" >
+                <div class="w-100 mb-2 d-flex justify-content-center">
+                    <label class="px-2" for="">Longitudine</label>
+                    <input class="w-75" type="text" [(ngModel)]="longitudine" name="longitudine" placeholder="longitudine">
                 </div>
-                <button [routerLink]="['/detail', latitudine, longitudine]"  >CERCA</button>
-                <button (click)="reset()">RESET</button>
             </form>
+            <div class="row w-100 d-flex justify-content-center ">
+                <div class="col col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+                    <button class="w-50 m-3 btn btn-primary fw-bold text-white" [routerLink]="['/detail', latitudine, longitudine]">CERCA</button>
+                </div>
+                <div class="col col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
+                    <button class="w-50 m-3 btn btn-primary fw-bold text-white" (click)="reset()">RESET</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col col-12">
-            <h2>Suggeriti</h2>
-            <ul class="nav nav-tabs">
+<div class="container mt-3 vh-md-50">
+    <div class="row justify-content-center">
+        <div class="col col-12 border-start border-end border-bottom border-2 rounded-4 p-4">
+            <h2 class="text-center">Suggeriti</h2>
+            <ul class="nav nav-underline d-flex justify-content-center">
                 <li class="nav-item" *ngFor="let city of cities">
-                    <button class="nav-link" [class.active]="city.name===citiesSelected" (click)="functionSelectCity(city.name)" >{{city.name}}</button>
+                    <button class="nav-link" [class.active]="city.name===citiesSelected" (click)="functionSelectCity(city.name)">{{city.name}}</button>
                 </li>
             </ul>
-            <div class="row">
-                <div class="col col-12">
-                    <h3>{{citiesSelected}}</h3>
-                    <p *ngIf="citta?.results">{{citta.results.sunrise}}</p>
-                    <p *ngIf="citta?.results">{{citta.results.sunset}}</p>
+            <div class="row justify-content-center pt-3">
+                <div class="col col-md-6 col-12  d-flex justify-content-center flex-wrap">
+                    <div class="col col-12 d-flex justify-content-center">
+                        <h3>{{citiesSelected}}</h3>
+                    </div>
+                    <div class="col col-6 d-flex justify-content-center flex-wrap">
+                        <img class="img-fluid object-fit-cover w-25 " src="../../assets/sunrise.png" alt="">
+                        <p class="w-100 text-center" *ngIf="citta?.results">{{citta.results.sunrise}}</p>
+                    </div>
+                    <div class="col col-6 d-flex justify-content-center flex-wrap">
+                        <img class="img-fluid object-fit-cover w-25 " src="../../assets/sunset.png" alt="">
+                        <p class="w-100 text-center" *ngIf="citta?.results">{{citta.results.sunset}}</p>
+                    </div>
                 </div>
             </div>
         </div>

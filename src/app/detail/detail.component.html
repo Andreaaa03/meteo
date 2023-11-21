@@ -1,21 +1,41 @@
-<div class="container">
+<div class="container my-5">
     <div class="row">
-        <div class="col col-12">
-            <button [routerLink]="'/home'">Home</button>
+        <div class="col col-12 d-flex justify-content-center">
+            <button class="btn btn-primary fw-bold text-white" [routerLink]="'/home'">Home</button>
         </div>
         <div class="col col-12">
-            <p *ngIf="citta?.results">{{citta.results.sunrise}}</p>
-            <p *ngIf="citta?.results">{{citta.results.sunset}}</p>
-            <div class="row" *ngFor="let single of tempo.dataseries">
-                <div class="col col-4">
-                    {{single.timepoint}}
+            <div class="row justify-content-center">
+                <div class="col col-12 d-flex">
+                    <div class="col col-5 d-flex justify-content-center flex-wrap">
+                        <img class="img-fluid object-fit-cover w-25 " src="../../assets/sunrise.png" alt="">
+                        <p class="w-100 text-center" *ngIf="citta?.results">{{citta.results.sunrise}}</p>
+                    </div>
+                    <div class="col col-2 h-100 d-flex align-items-center">
+                        <h2 class="text-center w-100">{{nameCity}}</h2>
+                    </div>
+                    <div class="col col-5 d-flex justify-content-center flex-wrap">
+                        <img class="img-fluid object-fit-cover w-25 " src="../../assets/sunset.png" alt="">
+                        <p class="w-100 text-center" *ngIf="citta?.results">{{citta.results.sunset}}</p>
+                    </div>
                 </div>
-                <div class="col col-4">
-                    {{single.temp2m}}
-                </div>
-                <div class="col col-4">
-                    <img [src]="single.img" alt="">
-                </div>
+            </div>
+            <div class="" >
+                <table class="table table-secondary table-striped ">
+                    <thead>
+                        <tr>
+                            <td>orario</td>
+                            <td>gradi</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border" *ngFor="let single of tempo.dataseries">
+                            <td>{{single.timepoint}}</td>
+                            <td>{{single.temp2m}}°</td>
+                            <td><img [src]="single.img" alt=""></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

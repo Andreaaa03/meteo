@@ -20,7 +20,7 @@ export type tempo = {
     init: string;
     dataseries: [
         {
-            timepoint: number;
+            timepoint: string;
             cloudcover: number;
             seeing: number;
             transparency: number;

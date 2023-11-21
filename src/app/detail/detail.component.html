@@ -11,7 +11,8 @@
                         <p class="w-100 text-center" *ngIf="citta?.results">{{citta.results.sunrise}}</p>
                     </div>
                     <div class="col col-2 h-100 d-flex align-items-center">
-                        <h2 class="text-center w-100">{{nameCity}}</h2>
+                        <h2 class="text-center w-100" *ngIf="nameCity">{{nameCity}}</h2>
+                        <h2 class="text-center w-100" *ngIf="!nameCity">*****</h2>
                     </div>
                     <div class="col col-5 d-flex justify-content-center flex-wrap">
                         <img class="img-fluid object-fit-cover w-25 " src="../../assets/sunset.png" alt="">
@@ -20,18 +21,20 @@
                 </div>
             </div>
             <div class="" >
-                <table class="table table-secondary table-striped ">
+                <table class="table border border-1 border-black">
                     <thead>
                         <tr>
                             <td>orario</td>
                             <td>gradi</td>
+                            <td>giorno/notte</td>
                             <td></td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="border" *ngFor="let single of tempo.dataseries">
+                    <tbody class="border border-1 border-black">
+                        <tr class="border border-black" [class.giorno]="single.dayNigth=='giorno'" [class.notte]="single.dayNigth=='notte'" *ngFor="let single of tempo.dataseries">
                             <td>{{single.timepoint}}</td>
                             <td>{{single.temp2m}}°</td>
+                            <td>{{single.dayNigth}}</td>
                             <td><img [src]="single.img" alt=""></td>
                         </tr>
                     </tbody>

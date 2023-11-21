@@ -9,12 +9,14 @@ import { ApiService } from './services/api.service';
 import { GetApiService } from './services/get-api.service';
 import { FormsModule } from '@angular/forms';
 import { DetailComponent } from './detail/detail.component';
+import { ErroreComponent } from './errore/errore.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailComponent
+    DetailComponent,
+    ErroreComponent
   ],
   imports: [
     BrowserModule,

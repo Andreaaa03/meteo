@@ -52,9 +52,10 @@ export class GetApiService {
     return res;
   }
 
-  calculateTime(res:any){
+  calculateTime(res:any) {
     res.dataseries.forEach((e: any) => {
-      e.timepoint = new Date(new Date().getTime() + e.timepoint * 60 * 60 * 1000).toUTCString().slice(0, -4);
+      let date = new Date(new Date().getTime() + (e.timepoint+1) * 60 * 60 * 1000);
+      e.timepoint = date.toUTCString().slice(0, -4);
     });
     return res;
   }

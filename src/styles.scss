@@ -1,10 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 $primary: grey;
 @import "../node_modules/bootstrap-scss/bootstrap.scss";
-
-td{
-    width: 33%;
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+td {
+    width: 25%;
     font-size: large;
     vertical-align: middle;
     text-align: center;
+}
+
+.giorno td {
+    background-color: rgb(233, 231, 231) !important;
+}
+
+.notte td {
+    background-color: rgba(125, 125, 125, 0.8) !important;
+    color: white !important;
 }

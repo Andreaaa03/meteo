@@ -2,6 +2,7 @@
 $primary: grey;
 @import "../node_modules/bootstrap-scss/bootstrap.scss";
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
 td {
     width: 25%;
     font-size: large;
@@ -16,4 +17,24 @@ td {
 .notte td {
     background-color: rgba(125, 125, 125, 0.8) !important;
     color: white !important;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.w-35 {
+    width: 35%;
+}
+
+.bordo-dx {
+    @include media-breakpoint-up(md) {
+        border-right: 1px solid rgba(128, 128, 128, 0.3);
+    }
+}
+
+.bordo-sx {
+    @include media-breakpoint-up(md) {
+        border-left: 1px solid rgba(128, 128, 128, 0.3);
+    }
 }

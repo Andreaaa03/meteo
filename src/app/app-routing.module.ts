@@ -6,7 +6,7 @@ import { GetApiService } from './services/get-api.service';
 import { ErroreComponent } from './errore/errore.component';
 
 const routes: Routes = [
-  {path:"home", component: HomeComponent},
+  {path:"home", component: HomeComponent, title: "Home Meteo",},
   {path:"detail/:lat/:long", component: DetailComponent, resolve:{
     sunsetSunrise: (route: ActivatedRouteSnapshot) => {
       return inject(GetApiService).getSearchSunsetSunriseByLatLong(route.paramMap.get("lat")!, route.paramMap.get("long")!);
@@ -17,7 +17,8 @@ const routes: Routes = [
     latLong: (route: ActivatedRouteSnapshot) => {
       return { lat: route.paramMap.get("lat")!, long: route.paramMap.get("long")!}
     },
-  }},
+  }, title: "dettaglio"
+},
   {path:"", redirectTo: "home", pathMatch: "full"},
   {path:"errore", component: ErroreComponent},
   { path: "**", component: ErroreComponent, title: "Errore, pagina non trovata" }

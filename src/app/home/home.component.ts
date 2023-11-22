@@ -9,14 +9,18 @@ import { sunsetSunrise } from '../models/type';
 export class HomeComponent implements OnInit {
   constructor(private getApiService: GetApiService) { }
   ngOnInit(): void {
+    //faccio subito la chiamata per vedere i risultati di Torino(alba e tramonto)
     this.nameCity = this.cities[0].name;
     this.latitudine = this.cities[0].lat;
     this.longitudine = this.cities[0].long;
     this.functionGgetSearchSunsetSunriseByLatLong();
+
+    //aggiorno cities(tutte le città) con la sessione!!
     if (sessionStorage.getItem('ArrayCities') as any !== null)
       this.cities = JSON.parse(sessionStorage.getItem('ArrayCities') as any);
   }
 
+  //città suggerite
   cities = [
     {
       name: 'Torino',
@@ -81,6 +85,7 @@ export class HomeComponent implements OnInit {
   ]
 
   citiesSelected: string = "Torino";
+  //in base al click dell'utente aggiorna la città, di default è Torino
   functionSelectCity(city: string) {
     for (let i = 0; i < this.cities.length; i++) {
       if (this.cities[i].name === city) {
@@ -96,9 +101,10 @@ export class HomeComponent implements OnInit {
   }
   latitudine: string = "";
   longitudine: string = "";
-  nameCity: string = "";
-  nameCityFav: string = "";
-  citta!: sunsetSunrise;
+  nameCity: string = ""; //nome città scelta/attuale
+  nameCityFav: string = ""; //nome città per i favoriti da eliminare
+  citta!: sunsetSunrise; 
+  //dalla latitudine e longitudine ottiene orario alba e tramonto
   functionGgetSearchSunsetSunriseByLatLong() {
     if (this.latitudine && this.longitudine) {
       this.getApiService.getSearchSunsetSunriseByLatLong(this.latitudine, this.longitudine).subscribe(
@@ -114,8 +120,11 @@ export class HomeComponent implements OnInit {
     this.latitudine = "";
     this.longitudine = "";
     this.nameCity = "";
+    this.nameCityFav = "";
   }
 
+  mexError:string = "";
+  //aggiungi una nuova città nei preferiti, gestisce l'errore con la variabile maxError. Uso la sessione!!!
   addNewCity() {
     const newCity = {
       name: this.nameCity,
@@ -132,10 +141,20 @@ export class HomeComponent implements OnInit {
         newCity.name = newCity.name.charAt(0).toUpperCase() + newCity.name.slice(1);
         this.cities.push(newCity);
         sessionStorage.setItem('ArrayCities', JSON.stringify(this.cities));
+      }else{
+        this.cities.some(city => {
+          if(city.name.toLowerCase() === newCity.name.toLowerCase()){
+            this.mexError="nome già esistente";
+          } else if (city.lat === newCity.lat && city.long === newCity.long){
+            this.mexError="latitudine o longitudine già esistenti";
+          }
+        }
+        )
       }
     }
   }
 
+  //rimuovi una singola città dai preferiti(solo dai preferiti), bisogna scriverla nel form 
   removeFavCity() {
     const nameCity = this.nameCityFav.charAt(0).toUpperCase() + this.nameCityFav.slice(1);
     for (let i = 0; i < this.cities.length; i++) {
@@ -147,6 +166,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //rimuovi TUTTI i preferiti
   removeAllFavCity() {
     for (let i = 0; i < this.cities.length; i++) {
       if (this.cities[i].fav === true) {
@@ -157,7 +177,4 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  info() {
-    alert("Per eliminare una voce dai tuoi preferiti devi scrivere il nome dentro il campo 'Nome Città' e confermare con 'CANCELLA UN PREFERITO'.\n Se Vuoi cancellare tutti i preferiti schiaccia su 'SVUOTA PREFERITI'")
-  }
 }

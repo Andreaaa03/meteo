@@ -6,7 +6,7 @@
                 <div class="col col-md-6 col-12 d-flex justify-content-center flex-wrap px-2 bordo-dx">
                     <div class="w-100 mb-2 d-flex justify-content-center">
                         <label class="px-2 w-35" for="">Nome Città per preferiti</label>
-                        <input class="w-50" type="text" maxlength="25" [(ngModel)]="nameCity" name="nameCity placeholder=" nameCity>
+                        <input class="w-50" type="text" maxlength="25" [(ngModel)]="nameCity" name="nameCity" placeholder="nome città da salvare">
                     </div>
                     <div class="w-100 mb-2 d-flex justify-content-center">
                         <label class="px-2 w-35" for="">Latitudine</label>
@@ -16,6 +16,7 @@
                         <label class="px-2 w-35" for="">Longitudine</label>
                         <input class="w-50" type="number" [(ngModel)]="longitudine" name="longitudine" placeholder="longitudine">
                     </div>
+                    <p class="text-danger">{{mexError}}</p>
                 </div>
                 <div class="col col-md-6 col-12 d-flex justify-content-center flex-wrap px-2 bordo-sx">
                     <div class="w-100 mb-2 d-flex align-items-center justify-content-center">

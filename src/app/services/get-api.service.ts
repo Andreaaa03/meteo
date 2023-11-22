@@ -17,7 +17,7 @@ export class GetApiService {
       })
     )
   }
-
+  
   getSearchTempoByLatLong(lat: string, long: string) {
     return this.apiService.searchTempoByLatLong(lat, long).pipe(
       map((res: any) => {
@@ -28,6 +28,7 @@ export class GetApiService {
     )
   }
 
+  //in base ai valori nell'oggetto aggiungo l'icona più corretta: sole, pioggia, neve, nuvoloso...
   addImg(res:any){
     res.dataseries.forEach((e: any) => {
       if (e.prec_type === "none") {
@@ -52,6 +53,7 @@ export class GetApiService {
     return res;
   }
 
+  //converte le ore 3,6,9,12 ecc in un'orario corretto partendo dalla data attuale
   calculateTime(res:any) {
     res.dataseries.forEach((e: any) => {
       let date = new Date(new Date().getTime() + (e.timepoint+1) * 60 * 60 * 1000);
@@ -60,6 +62,7 @@ export class GetApiService {
     return res;
   }
 
+  //richiesta API extra all'esame per trovare il nome della città date le coordinate
   getSearchCityByLatLong(lat:string, long:string){
     return this.apiService.searchCityByLatLong(lat, long).pipe(
       map((res:any)=>{

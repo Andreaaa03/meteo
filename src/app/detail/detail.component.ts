@@ -27,6 +27,7 @@ export class DetailComponent implements OnInit {
     )
   }
 
+  //funzione API nuova per prendere il nome di una città date le coordinate (API extra all' esame)
   functionGetSearchCityByLatLong(lat: string, long: string) {
     this.getApiService.getSearchCityByLatLong(lat, long).subscribe(
       (res) => {
@@ -35,6 +36,7 @@ export class DetailComponent implements OnInit {
     )
   }
 
+  //controllo in base all'alba e tramonto se è giorno e notte. converto tutto in ore, faccio il confronto e aggiungo una proprietà all'oggetto
   controlDayNigth(originalSunrise: any, originalSunset: any, orario: any) {
     const indexSunset = originalSunset.indexOf(':');
     const indexSunrise = originalSunrise.indexOf(':');

@@ -103,12 +103,13 @@ export class HomeComponent implements OnInit {
   longitudine: string = "";
   nameCity: string = ""; //nome città scelta/attuale
   nameCityFav: string = ""; //nome città per i favoriti da eliminare
-  citta!: sunsetSunrise; 
+  citta!: sunsetSunrise;
+
   //dalla latitudine e longitudine ottiene orario alba e tramonto
   functionGgetSearchSunsetSunriseByLatLong() {
     if (this.latitudine && this.longitudine) {
       this.getApiService.getSearchSunsetSunriseByLatLong(this.latitudine, this.longitudine).subscribe(
-        (res) => {
+        (res: sunsetSunrise) => {
           this.citta = res;
         }
       )
@@ -123,7 +124,7 @@ export class HomeComponent implements OnInit {
     this.nameCityFav = "";
   }
 
-  mexError:string = "";
+  mexError: string = "";
   //aggiungi una nuova città nei preferiti, gestisce l'errore con la variabile maxError. Uso la sessione!!!
   addNewCity() {
     const newCity = {
@@ -141,19 +142,19 @@ export class HomeComponent implements OnInit {
         newCity.name = newCity.name.charAt(0).toUpperCase() + newCity.name.slice(1);
         this.cities.push(newCity);
         sessionStorage.setItem('ArrayCities', JSON.stringify(this.cities));
-        this.mexError="";
-      }else{
+        this.mexError = "";
+      } else {
         this.cities.some(city => {
-          if(city.name.toLowerCase() === newCity.name.toLowerCase()){
-            this.mexError="nome già esistente";
-          } else if (city.lat === newCity.lat && city.long === newCity.long){
-            this.mexError="latitudine o longitudine già esistenti";
+          if (city.name.toLowerCase() === newCity.name.toLowerCase()) {
+            this.mexError = "nome già esistente";
+          } else if (city.lat === newCity.lat && city.long === newCity.long) {
+            this.mexError = "latitudine o longitudine già esistenti";
           }
         }
         )
       }
-    }else{
-      this.mexError="valori mancanti";
+    } else {
+      this.mexError = "valori mancanti";
     }
   }
 
@@ -180,8 +181,4 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  caricamento="";
-  updateMexError(){
-    this.caricamento="Caricamento in corso..."!
-  }
 }

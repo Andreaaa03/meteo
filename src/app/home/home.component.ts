@@ -141,6 +141,7 @@ export class HomeComponent implements OnInit {
         newCity.name = newCity.name.charAt(0).toUpperCase() + newCity.name.slice(1);
         this.cities.push(newCity);
         sessionStorage.setItem('ArrayCities', JSON.stringify(this.cities));
+        this.mexError="";
       }else{
         this.cities.some(city => {
           if(city.name.toLowerCase() === newCity.name.toLowerCase()){
@@ -151,6 +152,8 @@ export class HomeComponent implements OnInit {
         }
         )
       }
+    }else{
+      this.mexError="valori mancanti";
     }
   }
 
@@ -177,4 +180,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  caricamento="";
+  updateMexError(){
+    this.caricamento="Caricamento in corso..."!
+  }
 }

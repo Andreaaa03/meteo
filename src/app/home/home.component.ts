@@ -20,6 +20,11 @@ export class HomeComponent implements OnInit {
       this.cities = JSON.parse(sessionStorage.getItem('ArrayCities') as any);
   }
 
+  latitudine: string = "";
+  longitudine: string = "";
+  nameCity: string = ""; //nome città scelta/attuale
+  nameCityFavToCanc: string = ""; //nome città per i favoriti da eliminare
+  citta!: sunsetSunrise;
   //città suggerite
   cities = [
     {
@@ -99,12 +104,7 @@ export class HomeComponent implements OnInit {
     }
 
   }
-  latitudine: string = "";
-  longitudine: string = "";
-  nameCity: string = ""; //nome città scelta/attuale
-  nameCityFav: string = ""; //nome città per i favoriti da eliminare
-  citta!: sunsetSunrise;
-
+  
   //dalla latitudine e longitudine ottiene orario alba e tramonto
   functionGgetSearchSunsetSunriseByLatLong() {
     if (this.latitudine && this.longitudine) {
@@ -121,12 +121,13 @@ export class HomeComponent implements OnInit {
     this.latitudine = "";
     this.longitudine = "";
     this.nameCity = "";
-    this.nameCityFav = "";
+    this.nameCityFavToCanc = "";
   }
 
   mexError: string = "";
   //aggiungi una nuova città nei preferiti, gestisce l'errore con la variabile maxError. Uso la sessione!!!
   addNewCity() {
+    this.nameCity = this.nameCity.trimRight();
     const newCity = {
       name: this.nameCity,
       lat: this.latitudine,
@@ -160,7 +161,7 @@ export class HomeComponent implements OnInit {
 
   //rimuovi una singola città dai preferiti(solo dai preferiti), bisogna scriverla nel form 
   removeFavCity() {
-    const nameCity = this.nameCityFav.charAt(0).toUpperCase() + this.nameCityFav.slice(1);
+    const nameCity = this.nameCityFavToCanc.charAt(0).toUpperCase() + this.nameCityFavToCanc.slice(1);
     for (let i = 0; i < this.cities.length; i++) {
       if (this.cities[i].name === nameCity && this.cities[i].fav === true) {
         this.cities.splice(i, 1);
